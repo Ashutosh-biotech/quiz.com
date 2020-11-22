@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QUIZ TIME | AI</title>
+    <link rel="stylesheet" href="../w3.css">
+    <link rel="shortcut icon" href="https://ashutosh-biotech.github.io/AI.github.io/Ai.png" type="image/x-icon">
+    <script src="https://ashutosh-biotech.github.io/AI.github.io/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="../../jquery/jquery.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <style>
+        body {
+            background-color: crimson;
+        }
+
+        .container {
+            align-items: center;
+            background-color: rgb(240, 254, 255);
+            box-shadow: 5px 5px 5px rgb(63, 63, 63);
+            margin: 30px;
+            padding: 10px;
+            border-radius: 20px;
+        }
+
+        img {
+            height: 50px;
+            width: 50px;
+            top: 0px;
+            left: 0px;
+        }
+
+        th {
+            margin: 5px;
+            font-size: 30px;
+            padding: 0px 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <!-- ===============
+                startup
+             =============== -->
+        <div class="hide">
+            <div class="container w3-content">
+                <h2 class="w3-text-red">
+
+                </h2>
+            </div>
+            <div class="container w3-content ">
+                <h1 class="w3-text-blue">
+                    Quiz Show
+                </h1>
+                <h3>No. of question = <span>5</span></h3>
+                <button class="w3-btn w3-deep-purple w3-round-large w3-hover-text-orange w3-outline-none btn w3-margin">
+                    <h4>Let's Start</h4>
+                </button>
+            </div>
+            <div class="container w3-content">
+                <h2 class="w3-text-red">
+
+                </h2>
+            </div>
+        </div>
+
+
+
+        <!-- =======================
+                random questions
+             ======================= -->
+        <div class=" w3-hide que" id="que">
+            <div class="container w3-content">
+                <h2 class="w3-text-red">
+
+                </h2>
+            </div>
+
+
+
+            <div class="container w3-content">
+                <div class="question-change">
+                    <h2 class="w3-text-red">
+                        <p>Q<span class="question-no" id="queno">1</span><span id="question">. What is the fullform of
+                                IPO</span>?</p>
+                    </h2>
+                    <!-- options -->
+                    <div>
+                        <button class="w3-btn w3-purple w3-round-medium w3-hover-deep-purple w3-margin opp1"
+                            id="p1">Input Process Output</button>
+                        <button class="w3-btn w3-purple w3-round-medium w3-hover-deep-purple w3-margin opp2"
+                            id="p2">Internet Process Output</button>
+                        <button class="w3-btn w3-purple w3-round-medium w3-hover-deep-purple w3-margin opp3"
+                            id="p3">Input Print Output</button>
+                        <button class="w3-btn w3-purple w3-round-medium w3-hover-deep-purple w3-margin opp4"
+                            id="p4">Internet Print Over</button>
+                    </div>
+                </div>
+                <br>
+                <br>
+            </div>
+
+            <!-- accuracy -->
+
+            <div class="container w3-content">
+                <h2 class="w3-text-red">
+
+                </h2>
+            </div>
+        </div>
+
+
+
+        <!-- ================
+                result
+            ================= -->
+        <div class="w3-hide" id="result">
+            <div class="container w3-content">
+                <h2 class="w3-text-red">
+
+                </h2>
+            </div>
+            <div class="container w3-content">
+                <table>
+                    <tr>
+                        <th>Total Questions </th>
+                        <th id="done">5</th>
+                    </tr>
+                    <tr>
+                        <th>Total Questions Correct</th>
+                        <th><span id="tick">0</span></th>
+                    </tr>
+                    <tr>
+                        <th>Total Questions wrong</th>
+                        <th><span id="cross">0</span></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="container w3-content">
+                <h2 class="w3-text-red">
+
+                </h2>
+            </div>
+            <button class="w3-outline-none w3-btn w3-green w3-xlarge w3-round-large w3-hover-orange w3-margin rebtn" id="btnre">Try Again</button>
+        </div>
+    </center>
+</body>
+
+<script>
+
+    $('#btnre').click(function (e) { 
+        e.preventDefault();
+        $('#result').removeClass('w3-show');
+        $('#result').addClass('w3-hide');
+        $('.hide').show();
+        document.getElementById('queno').innerHTML = '1';
+        document.getElementById('tick').innerHTML = '0';
+        document.getElementById('cross').innerHTML = '0';
+        swal({
+                title: "Ok Got it!",
+                text: "quiz is Starting",
+                icon: "success",
+                button: "Restart",
+            });
+    });
+    var que_correct = 0;
+    var que_wrong = 0;
+    var total_que = 1;
+    const ans1 = 'Input Process Output';
+    const ans2 = 41;
+    const ans3 = 'Grand Daughter';
+    const ans4 = 'EOJDJEFM';
+    const ans5 = 654
+
+    $('.btn').click(function (e) {
+        e.preventDefault();
+        $('.hide').hide();
+        $('#que').removeClass('w3-hide');
+        $('#que').addClass('w3-show');
+    });
+
+    $('.opp1').click(function (e) {
+        debugger
+        e.preventDefault();
+        var a1 = document.getElementById('p1');
+        var a1 = a1.innerHTML;
+        console.log(a1);
+        if ((a1 == ans1) || (a1 == ans2) || (a1 == ans3) || (a1 == ans4) || (a1 == ans5)) {
+            var que_correct = document.getElementById('tick').innerHTML;
+            var que_correct = eval(que_correct);
+            var que_correct = eval(que_correct + 1);
+            document.getElementById('tick').innerHTML = que_correct;
+            right()
+            changequestion();
+        } else {
+            var que_wrong = document.getElementById('cross').innerHTML;
+            var que_wrong = eval(que_wrong);
+            var que_wrong = eval(que_wrong + 1);
+            document.getElementById('cross').innerHTML = que_wrong;
+            wrong();
+            changequestion();
+        }
+    });
+
+    function changequestion() {
+        // debugger
+        var queno = document.getElementById('queno');
+        var queno = queno.innerHTML;
+        if (queno < 5) {
+            var queno = eval(queno);
+            var queno = eval(queno + 1);
+            document.getElementById('queno').innerHTML = queno;
+            document.getElementById('done').innerHTML = queno;
+            if (queno == 1) {
+                document.getElementById('question').innerHTML = '. What is the fullform of IPO ';
+                document.getElementById('p1').innerHTML = 'Input Process Output';
+                document.getElementById('p2').innerHTML = 'Internet Process Output';
+                document.getElementById('p3').innerHTML = 'Input Print Output';
+                document.getElementById('p4').innerHTML = 'Internet Print Over';
+            } else if (queno == 2) {
+                document.getElementById('question').innerHTML = '. 7 is to 34 as 5 is to _____ ';
+                document.getElementById('p1').innerHTML = '33';
+                document.getElementById('p2').innerHTML = '24';
+                document.getElementById('p3').innerHTML = '54';
+                document.getElementById('p4').innerHTML = '41';
+            } else if (queno == 3) {
+                document.getElementById('question').innerHTML = '. A is B\'s sister. C is B\'s mother. D is C\'s father. E is D\'s mother. Then, How is A related to D ';
+                document.getElementById('p1').innerHTML = 'Grand Father';
+                document.getElementById('p2').innerHTML = 'Grand mother';
+                document.getElementById('p3').innerHTML = 'Daughter';
+                document.getElementById('p4').innerHTML = 'Grand Daughter';
+            } else if (queno == 4) {
+                document.getElementById('question').innerHTML = '. COMPUTER = RFUVQNPC, then MEDICINE = ____________ ';
+                document.getElementById('p1').innerHTML = 'MFEDJJOE';
+                document.getElementById('p2').innerHTML = 'EOJDEJFM';
+                document.getElementById('p3').innerHTML = 'MFEJDJOE';
+                document.getElementById('p4').innerHTML = 'EOJDJEFM';
+            } else if (queno == 5) {
+                document.getElementById('question').innerHTML = '. III, XIII, III, III = 678, 987, ____ ';
+                document.getElementById('p1').innerHTML = '891';
+                document.getElementById('p2').innerHTML = '654';
+                document.getElementById('p3').innerHTML = '345';
+                document.getElementById('p4').innerHTML = 'NONE OF THESE';
+            }
+            else {
+                alert('question ended')
+            }
+        } else if (queno == 5) {
+            $('#que').removeClass('w3-show');
+            $('#que').addClass('w3-hide');
+            $('#result').removeClass('w3-hide');
+            $('#result').addClass('w3-show');
+        }
+        else {
+            alert('Technical error')
+        }
+    }
+
+    $('.opp2').click(function (e) {
+        e.preventDefault();
+        var a1 = document.getElementById('p2');
+        var a1 = a1.innerHTML;
+        console.log(a1);
+        if ((a1 == ans1) || (a1 == ans2) || (a1 == ans3) || (a1 == ans4) || (a1 == ans5)) {
+            var que_correct = document.getElementById('tick').innerHTML;
+            var que_correct = eval(que_correct);
+            var que_correct = eval(que_correct + 1);
+            document.getElementById('tick').innerHTML = que_correct;
+            right();
+            changequestion();
+        } else {
+            var que_wrong = document.getElementById('cross').innerHTML;
+            var que_wrong = eval(que_wrong);
+            var que_wrong = eval(que_wrong + 1);
+            document.getElementById('cross').innerHTML = que_wrong;
+            wrong();
+            changequestion();
+        }
+    });
+
+    $('.opp3').click(function (e) {
+        e.preventDefault();
+        var a1 = document.getElementById('p3');
+        var a1 = a1.innerHTML;
+        console.log(a1);
+        if ((a1 == ans1) || (a1 == ans2) || (a1 == ans3) || (a1 == ans4) || (a1 == ans5)) {
+            var que_correct = document.getElementById('tick').innerHTML;
+            var que_correct = eval(que_correct);
+            var que_correct = eval(que_correct + 1);
+            document.getElementById('tick').innerHTML = que_correct;
+            right();
+            changequestion();
+        } else {
+            var que_wrong = document.getElementById('cross').innerHTML;
+            var que_wrong = eval(que_wrong);
+            var que_wrong = eval(que_wrong + 1);
+            document.getElementById('cross').innerHTML = que_wrong;
+            wrong();
+            changequestion();
+        }
+    });
+
+    $('.opp4').click(function (e) {
+        e.preventDefault();
+        var a1 = document.getElementById('p4');
+        var a1 = a1.innerHTML;
+        console.log(a1);
+        if ((a1 == ans1) || (a1 == ans2) || (a1 == ans3) || (a1 == ans4) || (a1 == ans5)) {
+            var que_correct = document.getElementById('tick').innerHTML;
+            var que_correct = eval(que_correct);
+            var que_correct = eval(que_correct + 1);
+            document.getElementById('tick').innerHTML = que_correct;
+            right();
+            changequestion();
+        } else {
+            var que_wrong = document.getElementById('cross').innerHTML;
+            var que_wrong = eval(que_wrong);
+            var que_wrong = eval(que_wrong + 1);
+            document.getElementById('cross').innerHTML = que_wrong;
+            wrong();
+            changequestion();
+
+        }
+    });
+
+    function right() {
+        swal({
+                title: "Good!",
+                text: "You are correct!",
+                icon: "success",
+                button: "Thank you!",
+            });
+    }
+
+    function wrong() {
+        swal({
+                title: "NO!",
+                text: "You are incorrect!",
+                icon: "error",
+                button: "Ok!",
+            });
+    }
+
+</script>
+
+</html>
+
+
+<!-- @  #  $  %  &  +  ()  ""  :  !  ?  ~  `  |   {}  _  <  > \ -->
